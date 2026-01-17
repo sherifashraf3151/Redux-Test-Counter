@@ -5,7 +5,7 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const state = useSelector( ( state ) => {
+  const counterState = useSelector( ( state ) => {
     // if (state.value < 1) {
     //   return "no Number";
     // }
@@ -25,17 +25,33 @@ function App() {
     dispatch( action )
   };
 
+
+    const toggleState = useSelector( (state) => {
+
+    return state.showCounter;
+  } )
+
+  const toggleCounter = () => {
+    dispatch( { type: "toggleCounter" } )
+  }
+
+
   return (
     <>
       <div className="App">
         <h1>Hello Redux Basic</h1>
-        <div className="counter">Counter: {state} </div>
+        {
+          toggleState && <>
+          <div className="counter">Counter: {counterState} </div>
+          <div>
+            <button className="btn" onClick={increase}> increase + </button>
+            <button className="btn" onClick={decrease}> decrease - </button>
+          </div>
+          </>
+        }
+        
         <div>
-          <button className="btn" onClick={increase}> increase + </button>
-          <button className="btn" onClick={decrease}> decrease - </button>
-        </div>
-        <div>
-          <button className="btn">Hide/Show Counter Number</button>
+          <button className="btn" onClick={toggleCounter}>Hide/Show Counter Number</button>
         </div>
       </div>
     </>
