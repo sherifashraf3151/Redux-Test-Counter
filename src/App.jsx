@@ -1,21 +1,27 @@
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect , useCallback } from 'react'
 
 function App() {
 
   const dispatch = useDispatch();
 
-  const globalState = useSelector( (state) => state )
+  const globalState = useSelector((state) => state);
 
-// This Function To increase or decrease the Counter
-  const counterOperation = ( type , payload ) => {
-    dispatch( { type: type , payload: payload } )
-  }
+  // This Function To increase or decrease the Counter
+  const counterOperation = useCallback(
+    (type, payload) => {
+      dispatch({ type: type, payload: payload });
+    },
+    [dispatch],
+  );
 
-// This Function to Switch Show OR Hide Counter
+  useEffect(() => counterOperation("increase", 10), [counterOperation]);
+
+  // This Function to Switch Show OR Hide Counter
   const toggleCounter = () => {
-    dispatch( { type: "toggleCounter" } )
-  }
+    dispatch({ type: "toggleCounter" });
+  };
 
   return (
     <>
