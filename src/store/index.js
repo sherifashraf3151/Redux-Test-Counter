@@ -3,14 +3,15 @@ import { createStore } from "redux";
 const initState = { value: 0 };
 
 // The Reducer
-const counterReducer = (state = initState, action) => {
+// Receive Data and action changes from dispatch( action ) in app.jsx file
+const counterReducer = (state = initState , action ) => {
 
   if ( action.type === "increase" ) {
-    return { value: state.value + 1 }
+    return { ...state , value: state.value + 1 }
   }
 
   if ( action.type === "decrease" ) {
-    return { value: state.value - 1 }
+    return { ...state , value: state.value - 1 }
   }
 
   return state;
