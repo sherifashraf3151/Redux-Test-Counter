@@ -5,54 +5,34 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const counterState = useSelector( ( state ) => {
-    // if (state.value < 1) {
-    //   return "no Number";
-    // }
+  const globalState = useSelector( (state) => state )
 
-    return state.value;
-  });
+// This Function To increase or decrease the Counter
+  const counterOperation = ( type , payload ) => {
+    dispatch( { type: type , payload: payload } )
+  }
 
-  // function dispatch(send) action as { type: "increase" , payload: 4 }
-  const increase = () => {
-    const action = { type: "increase" , payload: 4 };
-    dispatch( action )
-  };
-
-  // function dispatch(send) action as { type: "decrease" , payload: 2 }
-  const decrease = () => {
-    const action = { type: "decrease" , payload: 2 };
-    dispatch( action )
-  };
-
-
-    const toggleState = useSelector( (state) => {
-
-    return state.showCounter;
-  } )
-
+// This Function to Switch Show OR Hide Counter
   const toggleCounter = () => {
     dispatch( { type: "toggleCounter" } )
   }
-
 
   return (
     <>
       <div className="App">
         <h1>Hello Redux Basic</h1>
-        {
-          toggleState && <>
-          <div className="counter">Counter: {counterState} </div>
-          <div>
-            <button className="btn" onClick={increase}> increase + </button>
-            <button className="btn" onClick={decrease}> decrease - </button>
-          </div>
-          </>
-        }
-        
         <div>
           <button className="btn" onClick={toggleCounter}>Hide/Show Counter Number</button>
         </div>
+        {
+          globalState.showCounter && <>
+          <div className="counter">Counter: {globalState.value} </div>
+          <div>
+            <button className="btn" onClick={ () => counterOperation( "increase" , 4 )}> increase + </button>
+            <button className="btn" onClick={ () => counterOperation( "decrease" , 2 )}> decrease - </button>
+          </div>
+          </>
+        }
       </div>
     </>
   );
