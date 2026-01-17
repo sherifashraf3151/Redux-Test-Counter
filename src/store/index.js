@@ -4,6 +4,15 @@ const initState = { value: 0 };
 
 // The Reducer
 const counterReducer = (state = initState, action) => {
+
+  if ( action.type === "increase" ) {
+    return { value: state.value + 1 }
+  }
+
+  if ( action.type === "decrease" ) {
+    return { value: state.value - 1 }
+  }
+
   return state;
 };
 
