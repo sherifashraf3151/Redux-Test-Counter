@@ -13,15 +13,15 @@ function App() {
     return state.value;
   });
 
-  // function dispatch(send) action as { type: "increase" }
+  // function dispatch(send) action as { type: "increase" , payload: 4 }
   const increase = () => {
-    const action = { type: "increase" };
+    const action = { type: "increase" , payload: 4 };
     dispatch( action )
   };
 
-  // function dispatch(send) action as { type: "decrease" }
+  // function dispatch(send) action as { type: "decrease" , payload: 2 }
   const decrease = () => {
-    const action = { type: "decrease" };
+    const action = { type: "decrease" , payload: 2 };
     dispatch( action )
   };
 
